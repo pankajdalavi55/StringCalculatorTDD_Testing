@@ -34,5 +34,24 @@ public class TDD_TestingStringCalculator {
 		assertEquals(expected, actual);
 		
 	}
+	
+	@Test
+	public void moreNumbersAdditionInString_CommaDelimiter_returnSum()
+	{
+		StringCalculator calculator = new StringCalculator();
+		int actual = calculator.add("1,2,3,4,5");
+		int expected = 15;
+		assertEquals(expected, actual);
+	}
+	
+	@Test
+	public void ignoreNumberWhileAddition_GreterNumberThanThousand_returnSum()
+	{
+		StringCalculator calculator = new StringCalculator();
+		int actual = calculator.add("1,1000");
+		int expected = 1;
+		assertEquals(expected, actual);
+	}
 
+	
 }

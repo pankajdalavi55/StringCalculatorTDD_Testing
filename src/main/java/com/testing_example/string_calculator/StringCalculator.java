@@ -4,7 +4,7 @@ public class StringCalculator {
 
 	public int add(String input) {
 		String[] number = input.split(",");
-		
+		int sum = 0;
 		if(input.isEmpty())
 		{
 			return 0;
@@ -15,7 +15,14 @@ public class StringCalculator {
 		}
 		else
 		{
-			int sum = string_To_Int_Extracter(number[0]) + string_To_Int_Extracter(number[1]);
+			for (String numb : number)
+			{
+				if(string_To_Int_Extracter(numb) >= 1000)
+				{
+					continue;
+				}
+				sum += string_To_Int_Extracter(numb);
+			}
 			return sum;
 		}
 				
