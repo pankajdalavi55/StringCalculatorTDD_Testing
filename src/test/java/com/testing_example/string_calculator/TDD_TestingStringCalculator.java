@@ -26,8 +26,12 @@ public class TDD_TestingStringCalculator {
 	}
 	
 	@Test
-	public void numberAdditionInString_CommaDelimiter_returnSum()
+	public void twonumberAdditionInString_CommaDelimiter_returnSum()
 	{
+		StringCalculator calculator = new StringCalculator();
+		int actual = calculator.add("1,3");
+		int expected = 4;
+		assertEquals(expected, actual);
 		
 	}
 
