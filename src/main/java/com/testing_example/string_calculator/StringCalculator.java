@@ -2,12 +2,15 @@ package com.testing_example.string_calculator;
 
 public class StringCalculator {
 
-	public int isInputStringEmpty(String inputstring) {
-		if(inputstring.isEmpty())
+	public int add(String input) {
+		if(input.isEmpty())
 		{
 			return 0;
 		}
-		return 0;
+		else
+		{
+			return Integer.parseInt(input);
+		}
 		
 	}
 
