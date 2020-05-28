@@ -2,8 +2,10 @@ package com.testing_example.string_calculator;
 
 public class StringCalculator {
 
+	
 	public int add(String input) {
-		String[] number = input.split(",");
+		
+		String[] number = input.split(",|\n");
 		int sum = 0;
 		if(input.isEmpty())
 		{
