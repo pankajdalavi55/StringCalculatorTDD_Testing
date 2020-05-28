@@ -2,8 +2,30 @@ package com.testing_example.string_calculator;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
+
+import org.apache.log4j.Logger;
 
 public class StringCalculator {
+	
+	static Logger logger = Logger.getLogger(StringCalculator.class);
+	
+	public static void main(String[] args) throws NegativeNumbersNotAllowedException {
+		Scanner scanner = new Scanner(System.in);
+		StringCalculator calculate = new StringCalculator();
+		String inputstr = "ab";
+		while(!inputstr.isEmpty())
+		{
+			System.out.println("Enter the another Input String");
+			try {
+				inputstr = scanner.next();
+				int sum = calculate.add(inputstr);
+				System.out.println("the result is :"+ sum);
+			} catch (Exception e) {
+				e.getMessage();
+			}
+		}
+	}
 
 	
 	public int add(String input) throws NegativeNumbersNotAllowedException {
@@ -65,7 +87,7 @@ public class StringCalculator {
 	private List<Integer> numberExtracter(String input) {
 		List<Integer> allNumbers = new ArrayList();
 		
-		String[] arrayOfNumbers = input.split(",|\n");
+		String[] arrayOfNumbers = input.split("[\\n,]");
 		for(String number : arrayOfNumbers)
 		{
 			allNumbers.add(Integer.parseInt(number));
