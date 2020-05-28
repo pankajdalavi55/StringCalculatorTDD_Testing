@@ -1,39 +1,72 @@
 package com.testing_example.string_calculator;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class StringCalculator {
 
 	
 	public int add(String input) {
 		
-		String[] number = input.split(",|\n");
-		int sum = 0;
-		if(input.isEmpty())
+		if(input.isEmpty() || input == null)
 		{
 			return 0;
 		}
-		else if(number.length==1) 
-		{
-			return Integer.parseInt(input);
-		}
-		else
-		{
-			for (String numb : number)
-			{
-				if(string_To_Int_Extracter(numb) >= 1000)
-				{
-					continue;
-				}
-				sum += string_To_Int_Extracter(numb);
-			}
-			return sum;
+		else {
+			List<Integer> allNumbers = numberExtracter(input);
+			List<Integer> numbersWithoutIgnored = ignoreNumbers(allNumbers);
+			validateNumbers(numbersWithoutIgnored);
+			
+			int sumOfNumbers = summationOfNumbers(numbersWithoutIgnored);
+		
+			return sumOfNumbers;
 		}
 				
 		
 	}
 
-	private int string_To_Int_Extracter(String numb) {
-	
-		return Integer.parseInt(numb);
+	private int summationOfNumbers(List<Integer> numbersWithoutIgnored) {
+		int sum = 0;
+		for(Integer number : numbersWithoutIgnored)
+		{
+			sum += number;
+		}
+		return sum;
 	}
+
+	private void validateNumbers(List<Integer> numbersWithoutIgnored) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	private List<Integer> ignoreNumbers(List<Integer> allNumbers) {
+		List<Integer> numbersWithoutIgnored = new ArrayList<Integer>();
+		for(Integer number :allNumbers)
+		{
+			if (!isIgnored(number))
+                numbersWithoutIgnored.add(number);
+		}
+		return numbersWithoutIgnored;
+	}
+
+	private boolean isIgnored(Integer number) {
+		if(number > 1000)
+			return true;
+		else
+			return false;
+	}
+
+	private List<Integer> numberExtracter(String input) {
+		List<Integer> allNumbers = new ArrayList();
+		
+		String[] arrayOfNumbers = input.split(",|\n");
+		for(String number : arrayOfNumbers)
+		{
+			allNumbers.add(Integer.parseInt(number));
+		}
+		return allNumbers;
+	}
+
+	
 
 }

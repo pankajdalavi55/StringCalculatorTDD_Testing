@@ -2,7 +2,9 @@ package com.testing_example.string_calculator;
 
 import static org.junit.Assert.*;
 
+import org.junit.Rule;
 import org.junit.Test;
+import org.junit.rules.ExpectedException;
 
 public class TDD_TestingStringCalculator {
 
@@ -61,6 +63,18 @@ public class TDD_TestingStringCalculator {
 		int expected = 1;
 		assertEquals(expected, actual);
 	}
+	
+	 @Rule
+	 public ExpectedException thrown = ExpectedException.none();
+
+    @Test
+    public void throw_exception_if_input_contains_negative_number() throws Exception {
+        thrown.expect(Exception.class);
+        thrown.expectMessage("Negatives not allowed");
+        
+        StringCalculator calculator = new StringCalculator();
+        int result = calculator.add("2,-5");
+    }
 	
 	
 	
