@@ -6,7 +6,7 @@ import java.util.List;
 public class StringCalculator {
 
 	
-	public int add(String input) {
+	public int add(String input) throws NegativeNumbersNotAllowedException {
 		
 		if(input.isEmpty() || input == null)
 		{
@@ -34,10 +34,16 @@ public class StringCalculator {
 		return sum;
 	}
 
-	private void validateNumbers(List<Integer> numbersWithoutIgnored) {
-		// TODO Auto-generated method stub
-		
+	private void validateNumbers(List<Integer> numbersWithoutIgnored) throws NegativeNumbersNotAllowedException {
+		for (Integer number : numbersWithoutIgnored) {
+            validate(number);
+        }
 	}
+
+	 private void validate(Integer number) throws NegativeNumbersNotAllowedException {
+	        if(number < 0)
+	        	throw new NegativeNumbersNotAllowedException();
+	    }
 
 	private List<Integer> ignoreNumbers(List<Integer> allNumbers) {
 		List<Integer> numbersWithoutIgnored = new ArrayList<Integer>();
@@ -50,7 +56,7 @@ public class StringCalculator {
 	}
 
 	private boolean isIgnored(Integer number) {
-		if(number > 1000)
+		if(number >= 1000)
 			return true;
 		else
 			return false;
@@ -66,7 +72,5 @@ public class StringCalculator {
 		}
 		return allNumbers;
 	}
-
-	
 
 }

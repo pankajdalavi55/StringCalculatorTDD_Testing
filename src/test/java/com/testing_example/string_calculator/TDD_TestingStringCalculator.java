@@ -10,7 +10,7 @@ public class TDD_TestingStringCalculator {
 
    
 	@Test
-	public void return_Zero_if_input_is_EmptyString() {
+	public void return_Zero_if_input_is_EmptyString() throws NegativeNumbersNotAllowedException {
 		StringCalculator calculator = new StringCalculator();
 		int actual = calculator.add("");
 		int expected = 0;
@@ -18,7 +18,7 @@ public class TDD_TestingStringCalculator {
 	}
 	
 	@Test
-	public void return_Number_if_input_is_SingleNumberString()
+	public void return_Number_if_input_is_SingleNumberString() throws NegativeNumbersNotAllowedException
 	{
 		StringCalculator calculator = new StringCalculator();
 		int actual = calculator.add("1");
@@ -27,7 +27,7 @@ public class TDD_TestingStringCalculator {
 	}
 	
 	@Test
-	public void return_Sum_if_2NumberWithCommaDelimiter()
+	public void return_Sum_if_2NumberWithCommaDelimiter() throws NegativeNumbersNotAllowedException
 	{
 		StringCalculator calculator = new StringCalculator();
 		int actual = calculator.add("1,3");
@@ -37,7 +37,7 @@ public class TDD_TestingStringCalculator {
 	}
 	
 	@Test
-	public void return_Sum_if_MoreNumberWithCommaDelimiter()
+	public void return_Sum_if_MoreNumberWithCommaDelimiter() throws NegativeNumbersNotAllowedException
 	{
 		StringCalculator calculator = new StringCalculator();
 		int actual = calculator.add("1,2,3,4,5");
@@ -47,7 +47,7 @@ public class TDD_TestingStringCalculator {
 	
 	
 	@Test
-	public void return_Sum_if_NewLineAndCommaDelimiter()
+	public void return_Sum_if_NewLineAndCommaDelimiter() throws NegativeNumbersNotAllowedException
 	{
 		StringCalculator calculator = new StringCalculator();
 		int actual = calculator.add("1,2\n3");
@@ -56,14 +56,14 @@ public class TDD_TestingStringCalculator {
 	}
 	
 	@Test
-	public void ignore_Number_if_input_contains_numberGreaterThan1000()
+	public void ignore_Number_if_input_contains_numberGreaterThan1000() throws NegativeNumbersNotAllowedException
 	{
 		StringCalculator calculator = new StringCalculator();
 		int actual = calculator.add("1,1000");
 		int expected = 1;
 		assertEquals(expected, actual);
 	}
-	
+
 	 @Rule
 	 public ExpectedException thrown = ExpectedException.none();
 
@@ -71,8 +71,9 @@ public class TDD_TestingStringCalculator {
     public void throw_exception_if_input_contains_negative_number() throws Exception {
         thrown.expect(Exception.class);
         thrown.expectMessage("Negatives not allowed");
-        
+
         StringCalculator calculator = new StringCalculator();
+
         int result = calculator.add("2,-5");
     }
 	
