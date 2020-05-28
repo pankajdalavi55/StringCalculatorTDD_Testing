@@ -5,28 +5,10 @@ import java.util.List;
 import java.util.Scanner;
 
 import org.apache.log4j.Logger;
+import org.apache.log4j.PropertyConfigurator;
+
 
 public class StringCalculator {
-	
-	static Logger logger = Logger.getLogger(StringCalculator.class);
-	
-	public static void main(String[] args) throws NegativeNumbersNotAllowedException {
-		Scanner scanner = new Scanner(System.in);
-		StringCalculator calculate = new StringCalculator();
-		String inputstr = "ab";
-		while(!inputstr.isEmpty())
-		{
-			System.out.println("Enter the another Input String");
-			try {
-				inputstr = scanner.next();
-				int sum = calculate.add(inputstr);
-				System.out.println("the result is :"+ sum);
-			} catch (Exception e) {
-				e.getMessage();
-			}
-		}
-	}
-
 	
 	public int add(String input) throws NegativeNumbersNotAllowedException {
 		
@@ -93,6 +75,33 @@ public class StringCalculator {
 			allNumbers.add(Integer.parseInt(number));
 		}
 		return allNumbers;
+	}
+	
+	final static Logger logger = Logger.getLogger(StringCalculator.class);
+	
+	public static void main(String[] args) throws NegativeNumbersNotAllowedException {
+		
+		//PropertiesConfigurator is used to configure logger from properties file
+		 PropertyConfigurator.configure("log4j.properties");	        
+		
+		 Scanner scanner = new Scanner(System.in);
+		StringCalculator calculate = new StringCalculator();
+		String inputstr = "a";
+		logger.info("Main initiated");
+		while(!inputstr.isEmpty() || inputstr==null )
+		{
+			System.out.println("Enter the another Input String");
+			try {
+				inputstr = scanner.next();
+				logger.info("input String "+ inputstr);
+				int sum = calculate.add(inputstr);
+				System.out.println("the result is :"+ sum);
+				logger.info("the result is: "+sum);
+			} catch (Exception e) {
+				logger.error("Exception Occures In input String");
+				e.getMessage();
+			}
+		}
 	}
 
 }
